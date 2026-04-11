@@ -1,19 +1,8 @@
 #!/bin/bash
-set -e
+curl -sfL https://get.k3s.io | sh -
 
-# Install K3s in server mode
-curl -sfL https://get.k3s.io | INSTALL_K3S_EXEC="--disable=traefik" sh -
+# Save token
+sudo cat /var/lib/rancher/k3s/server/node-token > /vagrant/token
 
-# Wait for K3s to be ready
-sleep 5
-
-# Copy kubeconfig for root user
-mkdir -p /root/.kube
-cp /etc/rancher/k3s/k3s.yaml /root/.kube/config
-chmod 600 /root/.kube/config
-
-# Install kubectl
-ln -sf /usr/local/bin/k3s /usr/local/bin/kubectl
-
-# Get the token for worker nodes
-echo "K3s Server installed successfully"
+# Enable kubectl
+echo 'export KUBECONFIG=/etc/rancher/k3s/k3s.yaml' >> ~/.bashrc
