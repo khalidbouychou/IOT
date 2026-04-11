@@ -1,0 +1,52 @@
+Vagrant.configure(2) do |config|
+  config.vm.box = "debian/bookworm64"
+  config.vm.box_version = "12.20240610.1"
+  
+  # Server (Controller)
+  config.vm.define "khbouyS" do |server|
+    server.vm.hostname = "khbouyS"
+    server.vm.network "private_network", ip: "192.168.56.110"
+    server.vm.provider "virtualbox" do |v|
+      v.name = "khbouyS"
+      v.memory = 1024
+      v.cpus = 1
+    end
+    
+    server.vm.provision "shell", inline: <<-SHELL
+      set -e
+      apt-get update && apt-get upgrade -y
+      apt-get install -y curl wget openssh-server openssh-client
+      
+      mkdir -p /root/.ssh
+      chmod 700 /root/.ssh
+    SHELL
+    
+    server.vm.provision "shell", path: "scripts/install_k3s_server.sh"
+  end
+  
+  # Worker (Agent)
+  config.vm.define "khbouyW" do |worker|
+    worker.vm.hostname = "khbouyW"
+    worker.vm.network "private_network", ip: "192.168.56.111"
+    worker.vm.provider "virtualbox" do |v|
+      v.name = "khbouyW"
+      v.memory = 1024
+      v.cpus = 1
+    end
+    
+    worker.vm.provision "shell", inline: <<-SHELL
+      set -e
+      apt-get update && apt-get upgrade -y
+      apt-get install -y curl wget openssh-server openssh-client
+      
+      mkdir -p /root/.ssh
+      chmod 700 /root/.ssh
+    SHELL
+    
+    worker.vm.provision "shell" do |s|
+      s.inline = "sleep 10"
+    end
+    
+    worker.vm.provision "shell", path: "scripts/install_k3s_agent.sh"
+  end
+end

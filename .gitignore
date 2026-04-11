@@ -1,0 +1,31 @@
+# Vagrant
+.vagrant/
+*.box
+*.log
+
+# K3d/Kubernetes
+kubeconfig
+*.yaml.backup
+.kube/
+.kubeconfig
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Credentials
+.env
+.env.local
+kubeconfig*
+argocd-*
+
+# Temporary files
+*.tmp
+*.temp
