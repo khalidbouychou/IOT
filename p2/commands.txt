@@ -1,0 +1,65 @@
+Execution
+
+    Launch VM: cd p2 && vagrant up
+
+    Enter VM: vagrant ssh khbouychS
+
+    Deploy Apps:
+    code Bash
+
+    kubectl apply -f /vagrant/confs/
+
+    Wait for all pods to be Running.
+
+6. Verification (The Defense Part)
+
+On your iMac Browser:
+
+    Add IPs to /etc/hosts if not already done: 192.168.56.110 app1.com app2.com
+
+    Visit http://app1.com -> You see App 1.
+
+    Visit http://app2.com -> Refresh several times. You should see the "Hostname" change (because there are 3 replicas).
+
+    Visit http://192.168.56.110 (no host) -> You see App 3.
+
+Summary: This setup is 100% separate. You have a new folder, a new Vagrantfile, and new configurations specific to the Part 2 requirements.
+
+at the /etc/hosts file inside the VM. This is good for internal testing, but to pass the defense, you need to configure the iMac (the Host) so your browser can find the apps.
+
+Here is how to test both ways:
+1. The "Fast Test" (Inside the VM)
+
+You don't even need to edit the file to see if your Ingress is working. Just use curl with a Host header:
+
+Run these inside the VM:
+code Bash
+
+# Test App 1
+curl -H "Host: app1.com" http://localhost
+
+# Test App 2 (Do this 3 times to see different replica names)
+curl -H "Host: app2.com" http://localhost
+
+# Test App 3 (Default)
+curl http://localhost
+
+2. The "Browser Test" (On your iMac - Required for Defense)
+
+To make http://app1.com work in Chrome or Safari on the iMac:
+
+    Open a new terminal tab on your iMac (not inside the VM).
+
+    Edit your iMac's hosts file:
+    code Bash
+
+sudo nano /etc/hosts
+
+Add this line at the very bottom:
+code Text
+
+192.168.56.110 app1.com app2.com
+
+Press Ctrl+O, Enter, then Ctrl+X to save.
+
+Now open your browser and go to http://app1.com.

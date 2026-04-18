@@ -33,3 +33,7 @@ argocd-*
 .claude/
 .claude/settings.local.json
 .claude
+
+
+p1/.vagrant/
+p1/*.log
