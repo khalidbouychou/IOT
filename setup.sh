@@ -1,6 +1,5 @@
-#!/bin/bash 
+#!/bin/bash
 
-while true ; do 42 -clean -c ; done; 
 rm -rf ~/.vagrant.d
 rm -rf ~/VirtualBox\ VMs 
 
@@ -16,8 +15,8 @@ export VAGRANT_HOME="/goinfre/$(whoami)/vagrant_home"
 VBoxManage setproperty machinefolder /goinfre/$(whoami)/virtualbox_vms
 
 
-echo "export VAGRANT_HOME="/goinfre/$(whoami)/vagrant_home"" >> ~/.zshrc
+echo 'export VAGRANT_HOME="/goinfre/$(whoami)/vagrant_home"' >> ~/.zshrc
 
-source ~/.zshrc
+# source ~/.zshrc
 
 
