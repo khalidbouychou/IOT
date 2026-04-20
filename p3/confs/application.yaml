@@ -1,0 +1,18 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: khbouych-app
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/khalidbouychou/iot-p3.git' # <--- FIX THIS
+    targetRevision: HEAD
+    path: ./
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: dev
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
