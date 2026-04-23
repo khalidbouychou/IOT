@@ -1,3 +1,4 @@
+
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
@@ -6,9 +7,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/khalidbouychou/iot-p3.git' # <--- FIX THIS
+    repoURL: 'https://github.com/khalidbouychou/iot-p3.git' # Your Public Repo
     targetRevision: HEAD
-    path: ./
+    path: ./  # Looks for deployment.yaml in the root of the repo
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: dev
