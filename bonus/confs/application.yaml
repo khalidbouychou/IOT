@@ -6,16 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    # Points to the local VM IP we defined in the Vagrantfile
-    repoURL: 'http://192.168.56.120/root/iot-bonus.git'
+    repoURL: 'http://host.k3d.internal:8081/root/bonus.git'
     targetRevision: HEAD
     path: ./
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: dev
   syncPolicy:
-    syncOptions:
-      - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true

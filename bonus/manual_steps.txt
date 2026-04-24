@@ -1,0 +1,10 @@
+1. Run 'vagrant up' in bonus/ folder.
+2. Run 'kubectl create namespace gitlab' on your iMac.
+3. Get GitLab Password: 'vagrant ssh -c "sudo cat /etc/gitlab/initial_root_password"'
+4. Open http://192.168.56.120 in browser (User: root).
+5. Create Public Project named 'iot-bonus'.
+6. Clone your GitHub 'iot-p3' code to iMac, then push to GitLab:
+   git remote add bonus http://192.168.56.120/root/iot-bonus.git
+   git push bonus master
+7. Update confs/application.yaml to use 'http://192.168.56.120/root/iot-bonus.git'.
+8. Run 'kubectl apply -f confs/application.yaml' on your iMac.

@@ -37,3 +37,5 @@ argocd-*
 
 p1/.vagrant/
 p1/*.log
+
+bonus/.vagrant/
