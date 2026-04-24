@@ -4,16 +4,18 @@ metadata:
   name: bonus-app
   namespace: argocd
 spec:
-  project: bonus
+  project: default
   source:
-    # 'host.k3d.internal' allows Argo (inside Docker) to talk to the iMac host
-    repoURL: 'http://host.k3d.internal:8081/root/iot-bonus.git' # Your Public Repo
+    # Points to the local VM IP we defined in the Vagrantfile
+    repoURL: 'http://192.168.56.120/root/iot-bonus.git'
     targetRevision: HEAD
     path: ./
   destination:
-    server: 'https://kubernetes.bonus.svc'
+    server: 'https://kubernetes.default.svc'
     namespace: dev
   syncPolicy:
+    syncOptions:
+      - CreateNamespace=true
     automated:
       prune: true
       selfHeal: true

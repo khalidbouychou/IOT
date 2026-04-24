@@ -1,10 +1,17 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/bionic64"
-  config.vm.define "khbouych-gitlab-vm" do |v|
-    v.vm.hostname = "khbouych-gitlab-local"
-    v.vm.network "private_network", ip: "192.168.56.120"
-    v.vm.provider "virtualbox" do |vb|
-      vb.memory = "1024" # Minimum to keep the evaluator happy
+
+  config.vm.define "gitlab-local" do |g|
+    g.vm.hostname = "gitlab-local"
+    # Static IP so the K3d cluster can always find it
+    g.vm.network "private_network", ip: "192.168.56.120"
+    
+    g.vm.provider "virtualbox" do |vb|
+      # GitLab requires RAM. We give it 4GB (the bare minimum).
+      vb.memory = "4096"
+      vb.cpus = 2
     end
+    # Provisioning script to install GitLab
+    g.vm.provision "shell", path: "scripts/setup.sh"
   end
 end
