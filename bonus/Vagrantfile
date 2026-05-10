@@ -1,15 +1,16 @@
 Vagrant.configure("2") do |config|
+  # Use Ubuntu 20.04 (Focal) - It is stable and supports GitLab perfectly
   config.vm.box = "ubuntu/focal64"
+
   config.vm.define "gitlab-server" do |g|
     g.vm.hostname = "gitlab-local"
-    # Static IP so the K3d cluster on your iMac can find it
     g.vm.network "private_network", ip: "192.168.56.120"
     
     g.vm.provider "virtualbox" do |vb|
-      vb.memory = "4096"
+      vb.memory = "4096" # GitLab needs 4GB
       vb.cpus = 2
     end
-    # This runs the setup script inside the VM
+    # Ensure this points to your corrected setup.sh
     g.vm.provision "shell", path: "scripts/setup.sh"
   end
 end
