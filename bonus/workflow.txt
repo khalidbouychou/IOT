@@ -1,0 +1,22 @@
+Goal: Minimum bonus setup with local GitLab and Argo CD.
+
+Run once:
+1. sh setup_bonus_host.sh
+
+Script does:
+1. Create/reuse k3d cluster bonus-cluster
+2. Create namespaces argocd, dev, gitlab
+3. Install Argo CD
+4. Start GitLab CE locally in Docker
+5. Generate/apply confs/application-bonus.yaml with local GitLab URL
+
+Manual part:
+1. Open GitLab URL from script output
+2. Login as root
+3. Create public project iot-bonus
+4. Push bonus/deployment.yaml to iot-bonus
+
+Demo:
+1. Edit deployment.yaml from v1 to v2 in GitLab
+2. Argo CD auto-syncs to namespace dev
+3. Verify with curl http://localhost:8888

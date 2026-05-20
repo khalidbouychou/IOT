@@ -1,0 +1,15 @@
+PART 1: Learn Kubernetes basics
+    ↓ (master/worker topology)
+PART 2: Deploy real apps with routing
+    ↓ (Services, Deployments, Ingress)
+PART 3: GitOps continuous deployment
+    ↓ (Automate with git push)
+BONUS: Self-hosted GitOps infrastructure
+    ↓ (Full production setup)
+
+Final Result: You understand:
+  ✓ Kubernetes architecture
+  ✓ Container deployments
+  ✓ Load balancing & routing
+  ✓ GitOps continuous deployment
+  ✓ Building self-hosted infrastructure
