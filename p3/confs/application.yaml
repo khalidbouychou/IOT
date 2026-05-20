@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/khalidbouychou/iot-p3.git'
+    repoURL: 'https://github.com/khalidbouychou/khbouych.git'
     targetRevision: HEAD
     path: ./
   destination:
