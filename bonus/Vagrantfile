@@ -1,16 +1,13 @@
 Vagrant.configure("2") do |config|
-  # Use Ubuntu 20.04 (Focal) - It is stable and supports GitLab perfectly
   config.vm.box = "ubuntu/focal64"
 
   config.vm.define "gitlab-server" do |g|
     g.vm.hostname = "gitlab-local"
     g.vm.network "private_network", ip: "192.168.56.120"
-    
     g.vm.provider "virtualbox" do |vb|
-      vb.memory = "4096" # GitLab needs 4GB
+      vb.memory = "8046"
       vb.cpus = 2
     end
-    # Ensure this points to your corrected setup.sh
     g.vm.provision "shell", path: "scripts/setup.sh"
   end
 end

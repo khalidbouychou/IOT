@@ -6,7 +6,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'http://192.168.56.120/root/bonus.git' 
+    repoURL: 'http://209.38.231.135/root/khbouych.git' 
     targetRevision: HEAD
     path: ./
   destination:
