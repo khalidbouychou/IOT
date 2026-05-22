@@ -25,7 +25,7 @@ sudo docker run -d --name gitlab-local --hostname $DROPLET_IP -p $GL_PORT:80 --r
   -v ~/iot-gitlab/config:/etc/gitlab -v ~/iot-gitlab/logs:/var/log/gitlab -v ~/iot-gitlab/data:/var/opt/gitlab \
   --shm-size 256m gitlab/gitlab-ce:latest > /dev/null
 
-# 3. K3d Cluster
+# 3. K3d Cluster # 3. K3d Cluster
 k3d cluster delete bonus-clr || true
 k3d cluster create bonus-clr --api-port 6443 -p "$ACD_PORT:80@loadbalancer" --wait
 export KUBECONFIG=$(k3d kubeconfig write bonus-clr)
