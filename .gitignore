@@ -37,3 +37,6 @@ argocd-*
 
 p1/.vagrant/
 p1/*.log
+
+bonus/steps.txt
+bonus/.vagrant/

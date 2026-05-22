@@ -1,0 +1,13 @@
+Vagrant.configure("2") do |config|
+  config.vm.box = "ubuntu/focal64"
+
+  config.vm.define "gitlab-server" do |g|
+    g.vm.hostname = "gitlab-local"
+    g.vm.network "private_network", ip: "192.168.56.120"
+    g.vm.provider "virtualbox" do |vb|
+      vb.memory = "8046"
+      vb.cpus = 2
+    end
+    g.vm.provision "shell", path: "scripts/setup.sh"
+  end
+end
